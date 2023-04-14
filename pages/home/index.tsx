@@ -1,9 +1,10 @@
+import Navbar from "@/components/navbar";
 import React from "react";
 
 type Props = {};
 
 const index = (props: Props) => {
-  return <div>index</div>;
+  return <Navbar />;
 };
 
 export default index;
