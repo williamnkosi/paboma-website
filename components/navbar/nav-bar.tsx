@@ -1,13 +1,42 @@
 import React from "react";
-import { Box } from "@chakra-ui/react";
+import {
+  Flex,
+  Button,
+  IconButton,
+  Text,
+  Spacer,
+  useDisclosure,
+} from "@chakra-ui/react";
+import { MdOutlineShoppingCart, MdOutlineAccountCircle } from "react-icons/md";
+import { HamburgerIcon } from "@chakra-ui/icons";
+import NavBarDrawer from "@/components/navbar/nav-bar-drawer";
+import NavBarButton from "./nav-bar-button";
 
 type Props = {};
 
 const NavBar = (props: Props) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Box bg="blue" w="100%" p={4} color="white">
-      This is the Box
-    </Box>
+    <Flex bg="blue" w="100%" p={4} color="white">
+      <NavBarDrawer isOpen={isOpen} onClose={onClose} />
+      <Flex>
+        <IconButton
+          variant="outline"
+          colorScheme="white"
+          aria-label="Search database"
+          onClick={onOpen}
+          icon={<HamburgerIcon />}
+          me={10}
+        />
+
+        <Text fontSize="2xl">Paboma Market Place</Text>
+      </Flex>
+      <Spacer />
+      <Flex>
+        <NavBarButton title="Login" icon={<MdOutlineShoppingCart />} />
+        <NavBarButton title="Cart" icon={<MdOutlineShoppingCart />} />
+      </Flex>
+    </Flex>
   );
 };
 
