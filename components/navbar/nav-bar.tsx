@@ -2,6 +2,7 @@ import React from "react";
 import {
   Flex,
   Button,
+  Input,
   IconButton,
   Text,
   Spacer,
@@ -19,7 +20,7 @@ const NavBar = (props: Props) => {
   return (
     <Flex bg="blue" w="100%" p={4} color="white">
       <NavBarDrawer isOpen={isOpen} onClose={onClose} />
-      <Flex>
+      <Flex flex="2">
         <IconButton
           variant="outline"
           colorScheme="white"
@@ -31,8 +32,11 @@ const NavBar = (props: Props) => {
 
         <Text fontSize="2xl">Paboma Market Place</Text>
       </Flex>
+
       <Spacer />
-      <Flex>
+
+      <Flex flex="1">
+        <Input placeholder="Search" size="md" me={10} />
         <NavBarButton title="Login" icon={<MdOutlineShoppingCart />} />
         <NavBarButton title="Cart" icon={<MdOutlineShoppingCart />} />
       </Flex>
