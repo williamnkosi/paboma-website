@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { ParsedUrlQuery, encode } from "querystring";
 import { Box, Flex, Image, Spacer, Text, Button } from "@chakra-ui/react";
 import ReviewStars from "@/components/products/review-stars";
+import QuantityStepper from "@/components/quantity-stepper";
 
 type Props = {};
 
@@ -37,6 +38,7 @@ const ProductDetail = () => {
             12,000 MWK
           </Text>
           <p>Quantity section</p>
+          <QuantityStepper />
           <Button colorScheme="teal" variant="solid">
             Add to Cart
           </Button>
