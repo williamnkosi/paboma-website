@@ -6,7 +6,7 @@ type Props = {
 
 const ShortDescription = ({ description }: Props) => {
   return (
-    <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight" noOfLines={1}>
+    <Box mt="1" as="h4" color={"gray.700"}>
       {description}
     </Box>
   );

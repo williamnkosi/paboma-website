@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Image, Flex, Button, Spacer } from "@chakra-ui/react";
 import ReviewStars from "./review-stars";
 import ShortDescription from "./short-description";
+import ProductNamePrice from "./product-name-price";
 
 type Props = {
   imageUrl: string;
@@ -34,35 +35,18 @@ const ProductListItem = ({
     <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
       <Image src={property.imageUrl} alt={property.imageAlt} />
 
-      <Box p="6">
-        <Flex>
-          <Box display="flex" alignItems="baseline">
-            <Box
-              color="gray.500"
-              fontWeight="semibold"
-              letterSpacing="wide"
-              fontSize="xs"
-              textTransform="uppercase"
-              ml="2"
-            >
-              {title}
-            </Box>
-          </Box>
-          <Spacer />
-          <Box>
-            {price}
-            <Box as="span" color="gray.600" fontSize="sm">
-              MWK
-            </Box>
-          </Box>
-        </Flex>
+      <Flex p="6" direction={"column"} gap={4}>
+        <ProductNamePrice
+          title={property.title}
+          price={property.formattedPrice}
+        />
 
         <ShortDescription description={shortDescription} />
         <ReviewStars rating={rating} reviewCount={reviewCount} />
         <Button colorScheme="teal" variant="solid">
           Add to Cart
         </Button>
-      </Box>
+      </Flex>
     </Box>
   );
 };

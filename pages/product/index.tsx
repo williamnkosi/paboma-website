@@ -31,14 +31,6 @@ const index = (props: Props) => {
           reviewCount={130}
           price={"123.45 "}
         ></ProductListItem>
-        <ProductListItem
-          imageUrl={""}
-          title={"47 Area House"}
-          shortDescription={"This house is location in 47"}
-          rating={4}
-          reviewCount={130}
-          price={"123.45 "}
-        ></ProductListItem>
       </Flex>
     </div>
   );
