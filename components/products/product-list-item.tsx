@@ -3,6 +3,7 @@ import { Box, Image, Flex, Button, Spacer } from "@chakra-ui/react";
 import ReviewStars from "./review-stars";
 import ShortDescription from "./short-description";
 import ProductNamePrice from "./product-name-price";
+import Link from "next/link";
 
 type Props = {
   imageUrl: string;
@@ -46,6 +47,9 @@ const ProductListItem = ({
         <Button colorScheme="teal" variant="solid">
           Add to Cart
         </Button>
+        <Link href="/product/asdf">
+          <button>Go to Another Page</button>
+        </Link>
       </Flex>
     </Box>
   );
