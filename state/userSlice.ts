@@ -2,6 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "./store";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { useAppDispatch } from "./app-hooks";
 
 // Define a type for the slice state
 interface UserState {
@@ -17,10 +19,20 @@ const initialState: UserState = {
   error: null,
 };
 
-export const fetchPosts = createAsyncThunk("posts/fetch", async () => {
-  const response = await axios.get(
-    "https://jsonplaceholder.typicode.com/posts"
+export const fetchPosts = createAsyncThunk("user/createUser", async () => {
+  const userData: User = {
+    firstName: "reduxTesting,",
+    lastName: "reduxTesting lastName",
+    userName: "reduxTe",
+    phoneNumber: "6152918273",
+    email: "reduxTesting@gmail.com",
+    password: "testing123",
+  };
+  const response = await axios.post(
+    "http://new-testing-env.eba-hxtazzug.us-east-1.elasticbeanstalk.com/users/signup",
+    userData
   );
+  console.log(response);
   return response.data;
 });
 
@@ -28,7 +40,11 @@ export const userSlice = createSlice({
   name: "user",
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
-  reducers: {},
+  reducers: {
+    saveUserData: (state, action: PayloadAction<User>) => {
+      state.user = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchPosts.pending, (state) => {
       state.status = "loading";
@@ -40,6 +56,7 @@ export const userSlice = createSlice({
     builder.addCase(fetchPosts.rejected, (state, action: any) => {
       state.status = "failed";
       state.error = action.payload;
+      console.log(action.payload);
     });
   },
 });

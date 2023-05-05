@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, Input, Text, VStack } from "@chakra-ui/react";
 
+import { useAppSelector, useAppDispatch } from '../../state/app-hooks'
+import { fetchPosts } from '@/state/userSlice';
 type Props = {}
 
 type FormValues = {
@@ -13,6 +15,11 @@ type FormValues = {
 }
 
 const Signup = (props: Props) => {
+  const dispatch = useAppDispatch()
+
+
+  const count = useAppSelector((state) => state.user.user)
+
   const [values, setValues] = useState<FormValues>({
     firstName: "",
     lastName: "",
@@ -36,10 +43,17 @@ const Signup = (props: Props) => {
     setValues({ ...values, [name]: value });
   }
 
+  const handleClick = () => {
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    console.log("this one")
+    dispatch(fetchPosts())
+  }
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
     console.log("tesint")
-    e.preventDefault();
+    await dispatch(fetchPosts())
+
     // perform validation
     const newErrors: FormValues = {
       firstName: "",
@@ -60,6 +74,8 @@ const Signup = (props: Props) => {
     if (!newErrors.email && !newErrors.password) {
       // form is valid, perform submission
     }
+
+
   }
   return (
     <Flex width="100vw" height="100vh" align="center" justify="center" bg="gray.100">
@@ -67,7 +83,7 @@ const Signup = (props: Props) => {
         <Text fontSize="3xl" fontWeight="bold" mb={4}>
           Signup
         </Text>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}  >
           <VStack spacing={4}>
             <FormControl id="firstName" isInvalid={true}>
               <FormLabel>First Name</FormLabel>
