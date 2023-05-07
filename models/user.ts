@@ -4,5 +4,6 @@ type User = {
   userName: string;
   phoneNumber: string;
   email: string;
+  gender: string;
   password: string;
 };

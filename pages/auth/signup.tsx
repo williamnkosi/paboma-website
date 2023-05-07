@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, Input, Text, VStack } from "@chakra-ui/react";
 
 import { useAppSelector, useAppDispatch } from '../../state/app-hooks'
-import { fetchPosts } from '@/state/userSlice';
+import { signUpUser } from '@/state/userSlice';
 type Props = {}
 
 type FormValues = {
@@ -43,16 +43,10 @@ const Signup = (props: Props) => {
     setValues({ ...values, [name]: value });
   }
 
-  const handleClick = () => {
-
-    console.log("this one")
-    dispatch(fetchPosts())
-  }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    console.log("tesint")
-    await dispatch(fetchPosts())
+    dispatch(signUpUser())
 
     // perform validation
     const newErrors: FormValues = {
