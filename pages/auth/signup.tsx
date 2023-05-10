@@ -6,6 +6,7 @@ import { selectError, selectStatus, selectUserData, signUpUser } from '@/state/u
 import ErrorMessage from '@/components/error-message';
 import LoadingSpinner from '@/components/loading-spinner';
 import { LoadingStatus } from '@/models/loading-status.enum';
+import { isValidEmail, isValidPassword } from '@/utils/form-validators';
 type Props = {}
 
 type FormValues = {
@@ -66,7 +67,8 @@ const Signup = (props: Props) => {
       newErrors.lastName = "Your last name is required";
     }
     if (!values.userName) {
-      newErrors.email = "Your user name is required";
+      newErrors.userName = "Your user name is required";
+
     }
     if (!values.phoneNumber) {
       newErrors.phoneNumber = "Your phone number is required";
@@ -74,9 +76,16 @@ const Signup = (props: Props) => {
 
     if (!values.email) {
       newErrors.email = "Your email is required";
+      if (!isValidEmail(values.password)) {
+        newErrors.password = "You entered an invalid email"
+      }
     }
     if (!values.password) {
       newErrors.password = "Your password is required";
+      if (!isValidPassword(values.password)) {
+        newErrors.password = "Your password doesn't meet the requirements, Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one number"
+      }
+
     }
 
     console.log(values)
