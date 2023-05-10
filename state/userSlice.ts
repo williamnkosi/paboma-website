@@ -3,7 +3,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "./store";
 import axios, { AxiosError } from "axios";
 import { useDispatch } from "react-redux";
-import { useAppDispatch } from "./app-hooks";
+import { LoadingStatus } from "@/models/loading-status.enum";
 
 interface ValidationErrors {
   errorMessage: string;
@@ -13,14 +13,14 @@ interface ValidationErrors {
 // Define a type for the slice state
 interface UserState {
   user: any;
-  status: "idle" | "loading" | "succeeded" | "failed";
+  status: LoadingStatus;
   error: ErrorObject | null;
 }
 
 // Define the initial state using that type
 const initialState: UserState = {
   user: {},
-  status: "idle",
+  status: LoadingStatus.idle,
   error: null,
 };
 
@@ -32,7 +32,7 @@ export const signUpUser = createAsyncThunk(
       lastName: "reduxTesting lastName",
       userName: "reduxTe",
       phoneNumber: "6152918273",
-      email: "reduxTesting@gmail.com",
+      email: "reddsaduxTesting@gmail.com",
       gender: "male",
       password: "testing123",
     };
@@ -62,14 +62,14 @@ export const userSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(signUpUser.pending, (state) => {
       state.error = null;
-      state.status = "loading";
+      state.status = LoadingStatus.Loading;
     });
     builder.addCase(signUpUser.fulfilled, (state, action: any) => {
-      state.status = "succeeded";
+      state.status = LoadingStatus.succeeded;
       state.user = action.payload;
     });
     builder.addCase(signUpUser.rejected, (state, action: any) => {
-      state.status = "failed";
+      state.status = LoadingStatus.failed;
       state.error = action.payload;
       console.log(action.payload);
     });
@@ -79,6 +79,7 @@ export const userSlice = createSlice({
 export const {} = userSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectCount = (state: RootState) => state.user.user;
-
+export const selectUserData = (state: RootState) => state.user.user;
+export const selectStatus = (state: RootState) => state.user.status;
+export const selectError = (state: RootState) => state.user.error;
 export default userSlice.reducer;
