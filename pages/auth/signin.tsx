@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, Input, Text, VStack } from "@chakra-ui/react";
 import { useForm } from 'react-hook-form'
 import { selectError, selectStatus, signInUser } from '@/state/userSlice';
 import { useAppSelector, useAppDispatch } from '../../state/app-hooks'
 import ErrorMessage from "@/components/error-message";
+import { useRouter } from "next/router";
+import LoadingSpinner from "@/components/loading-spinner";
+import { LoadingStatus } from "@/models/loading-status.enum";
 type Props = {};
 
 type FormData = {
@@ -14,6 +17,7 @@ type FormData = {
 
 
 const Signin = (props: Props) => {
+  const router = useRouter();
   const dispatch = useAppDispatch()
   const errorMessage = useAppSelector(selectError)
   const userSliceStatus = useAppSelector(selectStatus)
@@ -22,6 +26,13 @@ const Signin = (props: Props) => {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<FormData>();
+
+
+  useEffect(() => {
+    if (userSliceStatus == LoadingStatus.succeeded) {
+      router.push('/'); // Replace '/other-page' with the desired page URL
+    }
+  }, [userSliceStatus, router]);
 
   function onSubmit(values: FormData) {
     dispatch(signInUser(values as { email: string; password: string }))
@@ -46,6 +57,11 @@ const Signin = (props: Props) => {
               <Input type="password" placeholder="Enter password"  {...register("password", { required: 'Password is requireed' })} />
               <FormErrorMessage> {errors.password && errors.password.message}</FormErrorMessage>
             </FormControl>
+            {
+              userSliceStatus == LoadingStatus.Loading ? <LoadingSpinner /> : <></>
+            }
+
+
             {
               errorMessage ?
                 <ErrorMessage message={errorMessage.message} /> : <></>
