@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, Input, Text, VStack } from "@chakra-ui/react";
-
+import { useForm } from 'react-hook-form'
 import { useAppSelector, useAppDispatch } from '../../state/app-hooks'
 import { selectError, selectStatus, selectUserData, signUpUser } from '@/state/userSlice';
 import ErrorMessage from '@/components/error-message';
@@ -13,6 +13,7 @@ type FormValues = {
   firstName: string;
   lastName: string;
   userName: string;
+  gender: string;
   phoneNumber: string;
   email: string;
   password: string;
@@ -20,121 +21,64 @@ type FormValues = {
 
 const Signup = (props: Props) => {
   const dispatch = useAppDispatch()
-
   const errorMessage = useAppSelector(selectError)
   const userSliceStatus = useAppSelector(selectStatus)
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors, isSubmitting },
+  } = useForm<FormValues>();
 
-  const [values, setValues] = useState<FormValues>({
-    firstName: "",
-    lastName: "",
-    userName: "",
-    phoneNumber: "",
-    email: "",
-    password: ""
 
-  });
-  const [errors, setErrors] = useState<FormValues>({
-    firstName: "",
-    lastName: "",
-    userName: "",
-    phoneNumber: "",
-    email: "",
-    password: ""
-  });
-
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-
-    const { name, value } = e.target;
-    setValues({ ...values, [name]: value });
-    console.log(values)
+  function onSubmit(values: any) {
+    dispatch(signUpUser(values as User))
   }
 
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    // perform validation
-    const newErrors: FormValues = {
-      firstName: "",
-      lastName: "",
-      userName: "",
-      phoneNumber: "",
-      email: "",
-      password: ""
-    };
-
-    if (!values.firstName) {
-      newErrors.firstName = "Your first name is required";
-    }
-    if (!values.lastName) {
-      newErrors.lastName = "Your last name is required";
-    }
-    if (!values.userName) {
-      newErrors.userName = "Your user name is required";
-
-    }
-    if (!values.phoneNumber) {
-      newErrors.phoneNumber = "Your phone number is required";
-    }
-
-    if (!values.email) {
-      newErrors.email = "Your email is required";
-      if (!isValidEmail(values.password)) {
-        newErrors.password = "You entered an invalid email"
-      }
-    }
-    if (!values.password) {
-      newErrors.password = "Your password is required";
-      if (!isValidPassword(values.password)) {
-        newErrors.password = "Your password doesn't meet the requirements, Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one number"
-      }
-
-    }
-
-    console.log(values)
-    setErrors(newErrors);
-    if (!newErrors.firstName && !newErrors.lastName && !newErrors.phoneNumber && !newErrors.email && !newErrors.email && !newErrors.password) {
-      dispatch(signUpUser(values as User))
-    }
-
-
-  }
   return (
     <Flex width="100vw" height="100vh" align="center" justify="center" bg="gray.100">
       <Box width="400px" borderWidth="1px" borderRadius="md" boxShadow="lg" p={8} bg="white">
         <Text fontSize="3xl" fontWeight="bold" mb={4}>
           Signup
         </Text>
-        <form onSubmit={handleSubmit}  >
+        <form onSubmit={handleSubmit(onSubmit)}  >
           <VStack spacing={4}>
-            <FormControl id="firstName" isInvalid={!!errors.firstName}>
+            <FormControl isInvalid={!!errors.firstName}>
               <FormLabel>First Name</FormLabel>
-              <Input type="text" placeholder="Enter your first name." onChange={handleChange} />
-              <FormErrorMessage>{errors.firstName}</FormErrorMessage>
+              <Input type="text" placeholder="Enter your first name."
+                {...register("firstName", { required: 'First name is required' })} />
+              <FormErrorMessage> {errors.firstName && errors.firstName.message}</FormErrorMessage>
             </FormControl>
             <FormControl id="lastName" isInvalid={!!errors.lastName}>
               <FormLabel>Last Name</FormLabel>
-              <Input type="text" placeholder="Enter your last name." onChange={handleChange} />
-              <FormErrorMessage>{errors.lastName}</FormErrorMessage>
+              <Input type="text" placeholder="Enter your last name."  {...register("lastName", { required: 'Your last name is required' })} />
+              <FormErrorMessage> {errors.lastName && errors.lastName.message}</FormErrorMessage>
             </FormControl>
             <FormControl id="userName" isInvalid={!!errors.userName}>
               <FormLabel>User name</FormLabel>
-              <Input type="text" placeholder="Enter a user name" onChange={handleChange} />
-              <FormErrorMessage>{errors.userName}</FormErrorMessage>
+              <Input type="text" placeholder="Enter a user name" {...register("userName", { required: 'Your user name is required' })} />
+              <FormErrorMessage> {errors.userName && errors.userName.message}</FormErrorMessage>
+            </FormControl>
+            <FormControl id="gender" isInvalid={!!errors.userName}>
+              <FormLabel>Gender</FormLabel>
+              <Input type="text" placeholder="Enter your gender" {...register("gender", { required: 'Your gender is required' })} />
+              <FormErrorMessage> {errors.gender && errors.gender.message}</FormErrorMessage>
             </FormControl>
             <FormControl id="phoneNumber" isInvalid={!!errors.phoneNumber}>
               <FormLabel>Phone Number</FormLabel>
-              <Input type="number" placeholder="Enter your phone number" onChange={handleChange} />
-              <FormErrorMessage>{errors.phoneNumber}</FormErrorMessage>
+              <Input type="number" placeholder="Enter your phone number"  {...register("phoneNumber", { required: 'Your phone number is required' })} />
+              <FormErrorMessage> {errors.phoneNumber && errors.phoneNumber.message}</FormErrorMessage>
             </FormControl>
             <FormControl id="email" isInvalid={!!errors.email}>
               <FormLabel>Email address</FormLabel>
-              <Input type="email" placeholder="Enter a unique email" onChange={handleChange} />
-              <FormErrorMessage>{errors.email}</FormErrorMessage>
+              <Input type="email" placeholder="Enter a unique email"  {...register("email", { required: 'Your email is required' })} />
+              <FormErrorMessage> {errors.email && errors.email.message}</FormErrorMessage>
             </FormControl>
             <FormControl id="password" isInvalid={!!errors.email}>
               <FormLabel>Password</FormLabel>
-              <Input type="password" placeholder="Enter password" onChange={handleChange} />
-              <FormErrorMessage>{errors.password}</FormErrorMessage>
+              <Input type="password" placeholder="Enter password"  {...register("password", { required: 'Your password is required' })} />
+              <FormErrorMessage> {errors.password && errors.password.message}</FormErrorMessage>
             </FormControl>
             {
               userSliceStatus == LoadingStatus.Loading ? <LoadingSpinner /> : <></>
