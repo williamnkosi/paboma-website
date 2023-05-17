@@ -69,7 +69,7 @@ const Signin = (props: Props) => {
             <Button colorScheme="blue" width="full" type="submit">
               Sign In
             </Button>
-            <Button colorScheme="blue" width="full">
+            <Button colorScheme="blue" width="full" onClick={() => router.push('/auth/signup')}>
               Sign Up
             </Button>
           </VStack>

@@ -4,6 +4,7 @@ import ReviewStars from "./review-stars";
 import ShortDescription from "./short-description";
 import ProductNamePrice from "./product-name-price";
 import Link from "next/link";
+import router from "next/router";
 
 type Props = {
   imageUrl: string;
@@ -33,7 +34,7 @@ const ProductListItem = ({
   };
 
   return (
-    <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
+    <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" onClick={() => router.push('/product/1')}>
       <Image src={property.imageUrl} alt={property.imageAlt} />
 
       <Flex p="6" direction={"column"} gap={4}>
