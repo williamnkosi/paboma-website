@@ -16,6 +16,7 @@ import NavBarButton from "./nav-bar-button";
 import { selectStatus, selectUserData } from '@/state/userSlice';
 import { useAppSelector } from "@/state/app-hooks";
 import router from "next/router";
+import DropdownMenu from "../home/drop-down-menu";
 type Props = {};
 
 const NavBar = (props: Props) => {
@@ -34,7 +35,8 @@ const NavBar = (props: Props) => {
           me={10}
         />
 
-        <Text fontSize="2xl" onClick={() => router.push('/')}>Paboma Market Place</Text>
+        <Text fontSize="2xl" onClick={() => router.push('/')} mr={16}>Paboma Market Place</Text>
+        <DropdownMenu />
       </Flex>
 
       <Spacer />
