@@ -32,7 +32,24 @@ export const signUpUser = createAsyncThunk(
         "http://localhost:5000/users/signup",
         userData
       );
-      console.log(response);
+
+      return response.data;
+    } catch (error: any) {
+      // We got validation errors, let's return those so we can reference in our component and set form errors
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const signInUser = createAsyncThunk(
+  "user/signInUser",
+  async (creds: { email: string; password: string }, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/users/signin",
+        creds
+      );
+
       return response.data;
     } catch (error: any) {
       // We got validation errors, let's return those so we can reference in our component and set form errors
@@ -51,19 +68,28 @@ export const userSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(signUpUser.pending, (state) => {
-      state.error = null;
-      state.status = LoadingStatus.Loading;
-    });
-    builder.addCase(signUpUser.fulfilled, (state, action: any) => {
-      state.status = LoadingStatus.succeeded;
-      state.user = action.payload;
-    });
-    builder.addCase(signUpUser.rejected, (state, action: any) => {
-      state.status = LoadingStatus.failed;
-      state.error = action.payload;
-      console.log(action.payload);
-    });
+    builder.addMatcher(
+      (action) => action.type.startsWith("user"),
+      (state) => {
+        state.error = null;
+        state.status = LoadingStatus.Loading;
+      }
+    );
+    builder.addMatcher(
+      (action) => action.type.endsWith("/fulfilled"),
+      (state, action) => {
+        state.status = LoadingStatus.succeeded;
+        state.user = action.payload;
+      }
+    );
+    builder.addMatcher(
+      (action) => action.type.endsWith("/rejected"),
+      (state, action) => {
+        state.status = LoadingStatus.failed;
+        state.error = action.payload;
+        console.log(action.payload);
+      }
+    );
   },
 });
 
