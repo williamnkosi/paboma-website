@@ -7,6 +7,7 @@ import ErrorMessage from '@/components/error-message';
 import LoadingSpinner from '@/components/loading-spinner';
 import { LoadingStatus } from '@/models/loading-status.enum';
 import { isValidEmail, isValidPassword } from '@/utils/form-validators';
+import router from 'next/router';
 type Props = {}
 
 type FormValues = {
@@ -89,7 +90,7 @@ const Signup = (props: Props) => {
                 <ErrorMessage message={errorMessage.message} /> : <></>
             }
 
-            <Button colorScheme="blue" width="full" type="submit">
+            <Button colorScheme="blue" width="full" type="submit" >
               Sign Up
             </Button>
 

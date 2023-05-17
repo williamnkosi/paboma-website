@@ -12,21 +12,21 @@ interface ValidationErrors {
 
 // Define a type for the slice state
 interface UserState {
-  user: any;
+  user: User | null;
   status: LoadingStatus;
   error: ErrorObject | null;
 }
 
 // Define the initial state using that type
 const initialState: UserState = {
-  user: {},
+  user: null,
   status: LoadingStatus.idle,
   error: null,
 };
 
 export const signUpUser = createAsyncThunk(
   "user/createUser",
-  async (userData: User, { rejectWithValue }) => {
+  async (userData: any, { rejectWithValue }) => {
     try {
       const response = await axios.post(
         "http://localhost:5000/users/signup",

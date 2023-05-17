@@ -5,5 +5,4 @@ type User = {
   phoneNumber: string;
   email: string;
   gender: string;
-  password: string;
 };

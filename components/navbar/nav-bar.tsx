@@ -9,14 +9,18 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { MdOutlineShoppingCart, MdOutlineAccountCircle } from "react-icons/md";
+import { RiUserLine } from "react-icons/ri"
 import { HamburgerIcon } from "@chakra-ui/icons";
 import NavBarDrawer from "@/components/navbar/nav-bar-drawer";
 import NavBarButton from "./nav-bar-button";
-
+import { selectStatus, selectUserData } from '@/state/userSlice';
+import { useAppSelector } from "@/state/app-hooks";
+import router from "next/router";
 type Props = {};
 
 const NavBar = (props: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const userData = useAppSelector(selectUserData)
   return (
     <Flex bg="blue" w="100%" p={4} color="white">
       <NavBarDrawer isOpen={isOpen} onClose={onClose} />
@@ -37,7 +41,10 @@ const NavBar = (props: Props) => {
 
       <Flex flex="1">
         <Input placeholder="Search" size="md" me={10} />
-        <NavBarButton title="Login" icon={<MdOutlineShoppingCart />} />
+        {
+          userData ? <NavBarButton title={"Hello " + userData.firstName} icon={<RiUserLine />} /> : <NavBarButton title="Login" icon={<MdOutlineShoppingCart />} onClick={() => router.push('/auth/signin')} />
+        }
+        <Spacer />
         <NavBarButton title="Cart" icon={<MdOutlineShoppingCart />} />
       </Flex>
     </Flex>
