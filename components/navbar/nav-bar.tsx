@@ -34,7 +34,7 @@ const NavBar = (props: Props) => {
           me={10}
         />
 
-        <Text fontSize="2xl">Paboma Market Place</Text>
+        <Text fontSize="2xl" onClick={() => router.push('/')}>Paboma Market Place</Text>
       </Flex>
 
       <Spacer />
