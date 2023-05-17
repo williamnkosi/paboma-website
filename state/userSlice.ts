@@ -26,22 +26,13 @@ const initialState: UserState = {
 
 export const signUpUser = createAsyncThunk(
   "user/createUser",
-  async (_, { rejectWithValue }) => {
-    const userData: User = {
-      firstName: "reduxTesting,",
-      lastName: "reduxTesting lastName",
-      userName: "reduxTe",
-      phoneNumber: "6152918273",
-      email: "reddsaduxTesting@gmail.com",
-      gender: "male",
-      password: "testing123",
-    };
-
+  async (userData: User, { rejectWithValue }) => {
     try {
       const response = await axios.post(
         "http://localhost:5000/users/signup",
         userData
       );
+      console.log(response);
       return response.data;
     } catch (error: any) {
       // We got validation errors, let's return those so we can reference in our component and set form errors

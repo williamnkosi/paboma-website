@@ -43,8 +43,10 @@ const Signup = (props: Props) => {
   });
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
+    console.log(values)
   }
 
 
@@ -91,7 +93,7 @@ const Signup = (props: Props) => {
     console.log(values)
     setErrors(newErrors);
     if (!newErrors.firstName && !newErrors.lastName && !newErrors.phoneNumber && !newErrors.email && !newErrors.email && !newErrors.password) {
-      dispatch(signUpUser())
+      dispatch(signUpUser(values as User))
     }
 
 
