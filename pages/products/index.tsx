@@ -1,6 +1,7 @@
 import ProductListItem from "@/components/products/product-list-item";
 import React, { useState } from "react";
-import { Flex, Grid, GridItem, Radio, RadioGroup, Spacer, Stack, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from "@chakra-ui/react";
+import { Divider, Flex, Grid, GridItem, Radio, RadioGroup, Spacer, Stack, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from "@chakra-ui/react";
+import Pagination from "@/components/products/paginator";
 type Props = {};
 const categores = ["Agricultural Procducts", "Arts", "Books", "Children & Babies", "Clothing", "Electoronics", "Health & Beauty",
   "Footwear & Shoes",
@@ -35,6 +36,7 @@ const index = (props: Props) => {
               </Stack>
             </RadioGroup>
 
+            <Divider mb={4} />
             <Text mb={4} as='b'>Locations</Text>
             <RadioGroup onChange={setValue} value={value}>
               <Stack direction='column'>
@@ -103,9 +105,12 @@ const index = (props: Props) => {
               </TabPanel>
             </TabPanels>
           </Tabs>
+          <Pagination currentPage={1} totalPages={10} onPageChange={() => console.log('changed')} />
         </GridItem>
 
       </Grid>
+
+
     </div>
   );
 };
