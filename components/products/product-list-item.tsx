@@ -33,9 +33,10 @@ const ProductListItem = ({
     rating: 4,
   };
 
+
   return (
     <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" onClick={() => router.push('/product/1')}>
-      <Image src={property.imageUrl} alt={property.imageAlt} />
+      <Image src={property.imageUrl} alt={property.imageAlt} className="transform hover:scale-110 transition-transform duration-300" />
 
       <Flex p="6" direction={"column"} gap={4}>
         <ProductNamePrice

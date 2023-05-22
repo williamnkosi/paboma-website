@@ -23,7 +23,7 @@ const NavBar = (props: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const userData = useAppSelector(selectUserData)
   return (
-    <Flex bg="blue" w="100%" p={4} color="white">
+    <Flex bg="#003d29" w="100%" p={4} color="white">
       <NavBarDrawer isOpen={isOpen} onClose={onClose} />
       <Flex flex="2">
         <IconButton

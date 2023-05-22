@@ -1,4 +1,4 @@
-import { Box, Flex, Spacer } from "@chakra-ui/react";
+import { Box, Flex, Spacer, Text } from "@chakra-ui/react";
 import React from "react";
 
 type Props = {
@@ -10,14 +10,7 @@ const ProductNamePrice = ({ title, price }: Props) => {
   return (
     <Flex>
       <Box display="flex">
-        <Box
-          fontWeight="semibold"
-          letterSpacing="wide"
-          fontSize="sm"
-          textTransform="uppercase"
-        >
-          {title}
-        </Box>
+        <Text>  {title}</Text>
       </Box>
       <Spacer />
       <Box fontWeight="semibold">
