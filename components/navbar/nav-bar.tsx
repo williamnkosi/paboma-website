@@ -13,10 +13,11 @@ import { RiUserLine } from "react-icons/ri"
 import { HamburgerIcon } from "@chakra-ui/icons";
 import NavBarDrawer from "@/components/navbar/nav-bar-drawer";
 import NavBarButton from "./nav-bar-button";
-import { selectStatus, selectUserData } from '@/state/userSlice';
+import { selectUserData } from '@/state/userSlice';
 import { useAppSelector } from "@/state/app-hooks";
 import router from "next/router";
 import DropdownMenu from "../home/drop-down-menu";
+import SearchBar from "../search/searchbar";
 type Props = {};
 
 const NavBar = (props: Props) => {
@@ -25,28 +26,26 @@ const NavBar = (props: Props) => {
   return (
     <Flex bg="#003d29" w="100%" p={4} color="white">
       <NavBarDrawer isOpen={isOpen} onClose={onClose} />
-      <Flex flex="2">
+      <Flex flex="2" alignItems='center' gap={8} >
         <IconButton
           variant="outline"
           colorScheme="white"
           aria-label="Search database"
           onClick={onOpen}
           icon={<HamburgerIcon />}
-          me={10}
         />
-
-        <Text fontSize="2xl" onClick={() => router.push('/')} mr={16}>Paboma Market Place</Text>
+        <Text as='b' fontSize="2xl" onClick={() => router.push('/')} >Paboma Market Place</Text>
         <DropdownMenu />
+        <Text as='b' onClick={() => router.push('/')} >Deals</Text>
+        <Text as='b' onClick={() => router.push('/')} >Whats New</Text>
       </Flex>
-
       <Spacer />
-
-      <Flex flex="1">
-        <Input placeholder="Search" size="md" me={10} />
+      <SearchBar />
+      <Spacer />
+      <Flex flex="1" alignItems='start'>
         {
-          userData ? <NavBarButton title={"Hello " + userData.firstName} icon={<RiUserLine />} /> : <NavBarButton title="Login" icon={<MdOutlineShoppingCart />} onClick={() => router.push('/auth/signin')} />
+          userData ? <NavBarButton title={"Hello " + userData.firstName} icon={<RiUserLine />} /> : <NavBarButton title="Login" icon={<RiUserLine />} onClick={() => router.push('/auth/signin')} />
         }
-        <Spacer />
         <NavBarButton title="Cart" icon={<MdOutlineShoppingCart />} />
       </Flex>
     </Flex>

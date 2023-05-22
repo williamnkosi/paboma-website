@@ -9,7 +9,7 @@ type Props = {
 
 const NavBarButton = ({ title, icon, onClick }: Props) => {
   return (
-    <Button variant="ghost" leftIcon={icon} colorScheme="white" mr={4} onClick={onClick}>
+    <Button variant="ghost" leftIcon={icon} colorScheme="white" onClick={onClick}>
       {title}
     </Button>
   );
