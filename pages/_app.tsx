@@ -6,7 +6,8 @@ import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { Provider } from "react-redux";
 
-const excludedRoutes = ['/auth/signin', '/auth/signup'];
+const excludedRoutes = ['/auth/signin', '/auth/signup',
+'/admin'];
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();

@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../paboma-backend-nest-api"
+		}
+	],
+	"settings": {}
+}
