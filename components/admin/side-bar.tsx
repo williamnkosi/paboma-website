@@ -8,11 +8,7 @@ type Props = {}
 const SideBar = (props: Props) => {
     return (
         <Box
-            as="aside"
-            pos="fixed"
-            top="0"
-            left="0"
-            zIndex="overlay"
+
             h="100vh"
             w="250px"
             p="4"
@@ -23,6 +19,7 @@ const SideBar = (props: Props) => {
             {/* Your sidebar content goes here */}
             <Flex direction={'column'}>
                 <SideBarButton text='Orders'></SideBarButton>
+
                 <SideBarButton text='Products'></SideBarButton>
             </Flex>
 

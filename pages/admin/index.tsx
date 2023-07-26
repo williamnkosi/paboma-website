@@ -1,25 +1,25 @@
+import ProdcutsBox from '@/components/admin/products/products-box'
 import SideBar from '@/components/admin/side-bar'
-import { Flex, Text, Box } from '@chakra-ui/react'
+import { Flex, Text, Box, Container } from '@chakra-ui/react'
+
 import React from 'react'
 
 type Props = {}
 
 const index = (props: Props) => {
     return (
-        <Box
+        <Flex
+            maxW='100%' bg='gray.200'
+            flexDirection={'row'}
         >
             <SideBar />
-            <Box position="fixed"
-                top={0}
-                left={0}
-                right={0}
-                bottom={0}// Set the height of the box to 300px
-                bg="gray.100" >
-                <Box bg='white' w='100%' p={4} borderBottomWidth='1px' paddingBottom='24px' color='white'>
-                    This is the Box
-                </Box>
-            </Box>
-        </Box >
+            <Flex width={'100%'} direction={'column'}>
+                <Box borderWidth='1px' height={'50px'} width={'100%'} bg={'white'} mb={8}></Box>
+                <ProdcutsBox />
+            </Flex>
+
+
+        </Flex>
     )
 }
 
