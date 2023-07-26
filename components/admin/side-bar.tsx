@@ -2,13 +2,15 @@
 import { Box, Flex, Text } from '@chakra-ui/react'
 import React from 'react'
 import SideBarButton from './side-bar-button'
+import { AdminSideBarSections } from './types'
 
-type Props = {}
+type Props = {
+    onButtonClick: (section: AdminSideBarSections) => void
+}
 
-const SideBar = (props: Props) => {
+const SideBar = ({ onButtonClick }: Props) => {
     return (
         <Box
-
             h="100vh"
             w="250px"
             p="4"
@@ -18,9 +20,8 @@ const SideBar = (props: Props) => {
         >
             {/* Your sidebar content goes here */}
             <Flex direction={'column'}>
-                <SideBarButton text='Orders'></SideBarButton>
-
-                <SideBarButton text='Products'></SideBarButton>
+                <SideBarButton type={AdminSideBarSections.orders} onButtonClick={onButtonClick} text='Orders'></SideBarButton>
+                <SideBarButton type={AdminSideBarSections.product} onButtonClick={onButtonClick} text='Products'></SideBarButton>
             </Flex>
 
         </Box>
