@@ -1,3 +1,4 @@
+import OrdersSection from '@/components/admin/orders-section/orders-section'
 import ProdcutsBox from '@/components/admin/products/products-box'
 import SideBar from '@/components/admin/side-bar'
 import { AdminSideBarSections } from '@/components/admin/types'
@@ -14,7 +15,7 @@ const index = (props: Props) => {
     const renderLayout = () => {
         switch (section) {
             case AdminSideBarSections.orders: {
-                return (<h1>Texting</h1>)
+                return (<OrdersSection />)
             } case AdminSideBarSections.product: {
                 return (<ProdcutsBox />)
             }
