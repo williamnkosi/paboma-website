@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import { Provider } from "react-redux";
 
 const excludedRoutes = ['/auth/signin', '/auth/signup',
-'/admin'];
+  '/admin', '/admin/orders', '/admin/orders/[orderId]'];
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
