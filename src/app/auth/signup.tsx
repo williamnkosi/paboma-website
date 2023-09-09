@@ -3,6 +3,7 @@ import { Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, Input, Tex
 import { useForm } from 'react-hook-form'
 import { useAppSelector, useAppDispatch } from '../../../state/app-hooks'
 import { selectError, selectStatus, selectUserData, signUpUser } from '@/state/userSlice';
+'use client'
 
 import { LoadingStatus } from '@/models/loading-status.enum';
 import { isValidEmail, isValidPassword } from '@/utils/form-validators';

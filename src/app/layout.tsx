@@ -1,14 +1,15 @@
+'use client'
+import { Provider } from "react-redux";
+import { store } from "@/state/store";
+import { ChakraProvider } from "@chakra-ui/react";
 export default function RootLayout({
-    // Layouts must accept a children prop.
-    // This will be populated with nested layouts or pages
     children,
 }: {
     children: React.ReactNode
 }) {
     return (
         <html lang="en">
-            <h2>Testing this has worked</h2>
-            <body>{children}</body>
+            <body><Provider store={store}><ChakraProvider>{children}</ChakraProvider></Provider></body>
         </html>
     )
 }

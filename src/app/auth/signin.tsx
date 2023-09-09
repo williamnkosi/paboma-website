@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect } from "react";
 import { Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, Input, Text, VStack } from "@chakra-ui/react";
 import { useForm } from 'react-hook-form'

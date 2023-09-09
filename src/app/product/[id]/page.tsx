@@ -1,5 +1,5 @@
+'use client'
 import React from "react";
-import { useRouter } from "next/router";
 import { ParsedUrlQuery, encode } from "querystring";
 import { Box, Flex, Image, Spacer, Text, Button, Divider } from "@chakra-ui/react";
 import ReviewStars from "@/src/components/products/review-stars";
@@ -7,9 +7,7 @@ import QuantityStepper from "@/src/components/quantity-stepper";
 
 type Props = {};
 
-const ProductDetail = () => {
-  const router = useRouter();
-  const { id } = router.query;
+const ProductDetail = ({ params }: { params: { id: string } }) => {
 
   return (
     <>

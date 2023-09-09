@@ -1,23 +1,19 @@
 'use client'
 
 import { Inter } from "next/font/google";
-import { Box, ChakraProvider, Divider, Flex, SimpleGrid, Text, Image, UnorderedList, ListItem, } from "@chakra-ui/react";
+import { Box, Divider, Flex, SimpleGrid, Text, Image, UnorderedList, ListItem, } from "@chakra-ui/react";
 import CardList from "../components/home/card-list";
 import Carousel from "../components/home/carousel";
 import ProductList from "../components/home/products-list";
-import { store } from "@/state/store";
-import { Component } from "react";
-import { Provider } from "react-redux";
-import Layout from "./layout";
 
 
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const testing = "testing";
-  return <Provider store={store}>
-    <ChakraProvider>
+
+  return (
+    <>
       <Carousel />
       <Flex mt={16} mb={16} direction={'column'} alignItems='center' justifyContent="center" >
         <Text fontSize="2xl" mb={8}>Shop Our Top Categories</Text>
@@ -80,8 +76,6 @@ export default function Home() {
         </Box>
 
       </SimpleGrid>
-
-
-    </ChakraProvider>
-  </Provider>;
+    </>)
+    ;
 }
