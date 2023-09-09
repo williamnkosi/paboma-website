@@ -1,6 +1,7 @@
-import ProductListItem from "@/components/products/product-list-item";
+
 import React from "react";
 import { Flex } from "@chakra-ui/react";
+import ProductListItem from "@/src/components/products/product-list-item";
 type Props = {};
 
 const index = (props: Props) => {

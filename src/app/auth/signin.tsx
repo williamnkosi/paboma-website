@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import { Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, Input, Text, VStack } from "@chakra-ui/react";
 import { useForm } from 'react-hook-form'
 import { selectError, selectStatus, signInUser } from '@/state/userSlice';
-import { useAppSelector, useAppDispatch } from '../../state/app-hooks'
-import ErrorMessage from "@/components/error-message";
+import { useAppSelector, useAppDispatch } from '../../../state/app-hooks'
 import { useRouter } from "next/router";
-import LoadingSpinner from "@/components/loading-spinner";
 import { LoadingStatus } from "@/models/loading-status.enum";
+import ErrorMessage from "@/src/components/error-message";
+import LoadingSpinner from "@/src/components/loading-spinner";
 type Props = {};
 
 type FormData = {
