@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Box, Image, Flex, Button, Spacer } from "@chakra-ui/react";
+import { Box, Image, Flex, Button, Spacer, Stack } from "@chakra-ui/react";
 import ReviewStars from "./review-stars";
 import ShortDescription from "./short-description";
 import ProductNamePrice from "./product-name-price";
@@ -56,6 +56,8 @@ const ProductListItem = ({
       </Box>
     </Link>
   );
+
+
 };
 
 export default ProductListItem;
