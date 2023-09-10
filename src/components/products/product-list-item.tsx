@@ -51,9 +51,7 @@ const ProductListItem = ({
           <Button colorScheme="teal" variant="solid">
             Add to Cart
           </Button>
-          <Link href="/product/asdf">
-            <button>Go to Another Page</button>
-          </Link>
+
         </Flex>
       </Box>
     </Link>

@@ -12,7 +12,7 @@ export default function AdminLayout({
 ) {
     return (
         <>
-            <h1>Testingsdftggsdgfesrgg</h1>
+
             {children}
         </>
     )

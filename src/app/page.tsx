@@ -5,12 +5,18 @@ import { Box, Divider, Flex, SimpleGrid, Text, Image, UnorderedList, ListItem, }
 import CardList from "../components/home/card-list";
 import Carousel from "../components/home/carousel";
 import ProductList from "../components/home/products-list";
+import { useState, useEffect } from "react";
 
 
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const [domLoaded, setDomLoaded] = useState(false);
+
+  useEffect(() => {
+    setDomLoaded(true);
+  }, []);
 
   return (
     <>
@@ -62,9 +68,7 @@ export default function Home() {
 
         </Box>
         <Box>
-
           <Flex direction={'column'} alignItems='center'  >
-
             <Text>Help</Text>
             <UnorderedList>
               <ListItem>Lorem ipsum dolor sit amet</ListItem>
@@ -74,8 +78,8 @@ export default function Home() {
             </UnorderedList>
           </Flex>
         </Box>
-
       </SimpleGrid>
     </>)
     ;
 }
+
