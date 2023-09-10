@@ -1,13 +1,14 @@
+'use client'
 import React, { useEffect, useState } from 'react'
 import { Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, Input, Text, VStack } from "@chakra-ui/react";
 import { useForm } from 'react-hook-form'
-import { useAppSelector, useAppDispatch } from '../../state/app-hooks'
+import { useAppSelector, useAppDispatch } from '../../../../state/app-hooks'
 import { selectError, selectStatus, selectUserData, signUpUser } from '@/state/userSlice';
-import ErrorMessage from '@/components/error-message';
-import LoadingSpinner from '@/components/loading-spinner';
 import { LoadingStatus } from '@/models/loading-status.enum';
 import { isValidEmail, isValidPassword } from '@/utils/form-validators';
 import router from 'next/router';
+import ErrorMessage from '@/src/components/error-message';
+import LoadingSpinner from '@/src/components/loading-spinner';
 type Props = {}
 
 type FormValues = {

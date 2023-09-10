@@ -1,11 +1,11 @@
+
 import React from "react";
 import { Box, Image, Flex, Button, Spacer, Stack } from "@chakra-ui/react";
 import ReviewStars from "./review-stars";
 import ShortDescription from "./short-description";
 import ProductNamePrice from "./product-name-price";
 import Link from "next/link";
-import router from "next/router";
-import FavoriteCircle from "./favorite";
+import Router from "next/router";
 
 type Props = {
   imageUrl: string;
@@ -36,14 +36,8 @@ const ProductListItem = ({
 
 
   return (
-    <Stack>
-
-      <Box
-
-        _hover={{
-          backgroundColor: "#f4fffc",
-          cursor: "pointer",
-        }} maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" onClick={() => router.push('/product/1')}>
+    <Link href={'/product/1'}>
+      <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
         <Image src={property.imageUrl} alt={property.imageAlt} className="transform hover:scale-110 transition-transform duration-300" />
 
         <Flex p="6" direction={"column"} gap={4}>
@@ -54,14 +48,13 @@ const ProductListItem = ({
 
           <ShortDescription description={shortDescription} />
           <ReviewStars rating={rating} reviewCount={reviewCount} />
-          <FavoriteCircle />
           <Button colorScheme="teal" variant="solid">
             Add to Cart
           </Button>
 
         </Flex>
       </Box>
-    </Stack>
+    </Link>
   );
 
 

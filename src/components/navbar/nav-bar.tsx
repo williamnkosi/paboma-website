@@ -1,3 +1,4 @@
+'use client'
 import React from "react";
 import {
   Flex,
@@ -11,13 +12,13 @@ import {
 import { MdOutlineShoppingCart, MdOutlineAccountCircle } from "react-icons/md";
 import { RiUserLine } from "react-icons/ri"
 import { HamburgerIcon } from "@chakra-ui/icons";
-import NavBarDrawer from "@/components/navbar/nav-bar-drawer";
 import NavBarButton from "./nav-bar-button";
 import { selectUserData } from '@/state/userSlice';
 import { useAppSelector } from "@/state/app-hooks";
 import router from "next/router";
 import DropdownMenu from "../home/drop-down-menu";
 import SearchBar from "../search/searchbar";
+import NavBarDrawer from "./nav-bar-drawer";
 type Props = {};
 
 const NavBar = (props: Props) => {
