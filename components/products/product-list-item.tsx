@@ -1,10 +1,11 @@
 import React from "react";
-import { Box, Image, Flex, Button, Spacer } from "@chakra-ui/react";
+import { Box, Image, Flex, Button, Spacer, Stack } from "@chakra-ui/react";
 import ReviewStars from "./review-stars";
 import ShortDescription from "./short-description";
 import ProductNamePrice from "./product-name-price";
 import Link from "next/link";
 import router from "next/router";
+import FavoriteCircle from "./favorite";
 
 type Props = {
   imageUrl: string;
@@ -35,26 +36,35 @@ const ProductListItem = ({
 
 
   return (
-    <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" onClick={() => router.push('/product/1')}>
-      <Image src={property.imageUrl} alt={property.imageAlt} className="transform hover:scale-110 transition-transform duration-300" />
+    <Stack>
 
-      <Flex p="6" direction={"column"} gap={4}>
-        <ProductNamePrice
-          title={property.title}
-          price={property.formattedPrice}
-        />
+      <Box
 
-        <ShortDescription description={shortDescription} />
-        <ReviewStars rating={rating} reviewCount={reviewCount} />
-        <Button colorScheme="teal" variant="solid">
-          Add to Cart
-        </Button>
-        <Link href="/product/asdf">
-          <button>Go to Another Page</button>
-        </Link>
-      </Flex>
-    </Box>
+        _hover={{
+          backgroundColor: "#f4fffc",
+          cursor: "pointer",
+        }} maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" onClick={() => router.push('/product/1')}>
+        <Image src={property.imageUrl} alt={property.imageAlt} className="transform hover:scale-110 transition-transform duration-300" />
+
+        <Flex p="6" direction={"column"} gap={4}>
+          <ProductNamePrice
+            title={property.title}
+            price={property.formattedPrice}
+          />
+
+          <ShortDescription description={shortDescription} />
+          <ReviewStars rating={rating} reviewCount={reviewCount} />
+          <FavoriteCircle />
+          <Button colorScheme="teal" variant="solid">
+            Add to Cart
+          </Button>
+
+        </Flex>
+      </Box>
+    </Stack>
   );
+
+
 };
 
 export default ProductListItem;
